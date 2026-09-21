@@ -3,3 +3,5 @@ dist/
 .projectatlas/
 *.png
 *.log
+outputs/
+tmp/

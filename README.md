@@ -1,17 +1,47 @@
-# ATV I · Match intelligence
+# Volleyball Match Intelligence
 
-Ein responsives Dashboard für die Volleyball-Statistik aus dem verlinkten Google Sheet.
+Ein responsives TypeScript- und React-Dashboard für Volleyball-Matchdaten.
+Die Anwendung verbindet einen öffentlichen CSV-Datenexport mit einer lokalen
+Fallback-Datenquelle und macht Team- und Spielerprofile vergleichbar.
 
-## Starten
+## Was das Projekt zeigt
+
+- Datenimport mit Fallback, damit die Oberfläche auch ohne Netzwerk weiterläuft
+- Radar-Charts als eigene SVG-Komponente
+- Filter für Rolle, Zeitraum und Ranglistenkennzahl
+- Team- und Spielerprofile in einer responsiven Oberfläche
+- getrennte Tests, Linting und Produktions-Build
+
+## Architektur
+
+```text
+öffentlicher CSV-Export
+        │
+        ├── erreichbar: aktuelle Matchdaten
+        └── nicht erreichbar: lokaler Fallback-Datensatz
+                         │
+                         ▼
+                 React-Dashboard
+             Filter · Profile · Charts
+```
+
+## Stack
+
+- React
+- TypeScript
+- Vite
+- Vitest
+- ESLint
+- SVG-basierte Visualisierung
+
+## Lokal starten
 
 ```bash
 npm install
 npm run dev
 ```
 
-Die Anwendung lädt den öffentlichen CSV-Export des Sheets automatisch. Falls der Export nicht erreichbar ist, zeigt sie einen lokalen Fallback-Datensatz, damit die Oberfläche weiter nutzbar bleibt.
-
-## Prüfen
+## Qualität prüfen
 
 ```bash
 npm test
@@ -19,12 +49,14 @@ npm run lint
 npm run build
 ```
 
-Die Radar-Charts sind als SVG-Komponente umgesetzt und unterstützen Team- sowie Spielerprofile. Filter für Rolle, Zeitraum und Ranglistenkennzahl aktualisieren die Auswertungen direkt in der Oberfläche.
+## Daten und Datenschutz
 
-## Weiteres Review
+Die Anwendung verwendet nur den vorgesehenen öffentlichen Datenexport. Es
+werden keine Zugangsdaten oder privaten API-Schlüssel benötigt. Lokale
+Ausgaben und temporäre Dateien gehören nicht in das Repository.
 
-Für eine vertiefte technische und fachliche Bewertung mit einem stärkeren Modell:
+## Status
 
-```text
-Lies AI_REVIEW_TEAM.md und arbeite nach dem dort beschriebenen Review-Team und der Definition of done.
-```
+Das Dashboard ist ein funktionierender Prototyp für die Auswertung von
+Volleyball-Matchdaten. Die fachliche Auswertung und die Datenquelle können
+unabhängig voneinander weiterentwickelt werden.
